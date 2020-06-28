@@ -5,14 +5,23 @@ import App from './App'
 import router from './router'
 import elmentui from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
+import './icons'
+import store from './store' //引入 Vuex 状态管理
 
 Vue.use(elmentui);
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+// new Vue({
+//   el: '#app',
+//   router,
+//   store, //使用 Vuex 进行状态管理
+//   components: {App},
+//   template: '<App/>'
+// });
+
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
-})
+  render: h => h(App),
+  router, //使用路由配置
+  store //使用 Vuex 进行状态管理
+}).$mount('#app')

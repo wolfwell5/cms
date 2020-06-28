@@ -1,8 +1,8 @@
 <template>
   <div>
 
+    <i class="el-icon-share" @click="moveto" title="Move to login"></i>
     <i class="el-icon-edit"></i>
-    <i class="el-icon-share"></i>
     <i class="el-icon-delete"></i>
     <el-button type="primary" icon="el-icon-search">搜索</el-button>
 
@@ -11,7 +11,12 @@
 
 <script>
     export default {
-        name: "Home"
+        name: "Home",
+        methods: {
+            moveto() {
+                this.$router.push({path: "/login"});
+            },
+        },
     }
 </script>
 
