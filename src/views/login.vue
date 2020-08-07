@@ -85,6 +85,9 @@
                             .dispatch("Login", this.loginForm)
                             .then(response => {
                                 this.loading = false;
+                                // console.log('env',process.env);
+                                // console.log(response);
+
                                 let code = response.data.code;
                                 if (code == 200) {
                                     this.$router.push({
@@ -99,8 +102,7 @@
                                 }
                             })
                             .catch((e) => {
-                                console.log(e)
-
+                                console.log('exception', e)
                                 this.loading = false;
                             });
                     } else {
@@ -120,7 +122,7 @@
     left: 0;
     right: 0;
     width: 360px;
-    margin: 140px auto;
+    margin: -50px auto;
     border-top: 10px solid #409eff;
   }
 

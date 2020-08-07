@@ -10,3 +10,9 @@ cnpm install vue-router (安装 路由，用于实现两个 Vue 页面的跳转)
 
 vue中引入.svg图标	https://www.jianshu.com/p/acc348ae77a1
 cnpm i svg-sprite-loader --save
+
+cnpm install qs --save-dev
+
+
+
+

@@ -1,23 +1,28 @@
 <template>
   <div id="app">
-<!--    <img src="./assets/logo.png">-->
-    <router-view/>
+    <!--    解决相同路由 不同param不刷新问题-->
+    <router-view :key="$route.fullPath"/>
+    <!--    <home-lay-out/>-->
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+    import HomeLayOut from "@/views/HomeLayOut";
+
+    export default {
+        name: 'App',
+        components: {HomeLayOut}
+    }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*overflow-y: hidden;*/
+  }
+
 </style>

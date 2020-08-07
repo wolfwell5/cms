@@ -7,7 +7,9 @@ import elmentui from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import './icons'
 import store from './store' //引入 Vuex 状态管理
+import qs from 'qs'
 
+Vue.prototype.$qs = qs;
 Vue.use(elmentui);
 Vue.config.productionTip = false
 
