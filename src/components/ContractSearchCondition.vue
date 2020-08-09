@@ -7,7 +7,6 @@
 
         <div>
           <div style="float: left">
-            <!--          <span>-->
             <i class="el-icon-search"></i>
             <span style="font-weight:bolder">筛选搜索</span>
           </div>
@@ -30,10 +29,11 @@
         </div>
 
         <div style="margin-top: 45px">
-          <el-form :inline="true" :model="listQuery" size="small" label-width="140px"  @keyup.enter.native="handleSearchList()">
+          <el-form :inline="true" :model="listQuery" size="small" label-width="140px"
+                   @keyup.enter.native="handleSearchList()">
             <el-form-item label="输入来往客户：">
               <el-autocomplete class="" v-model="listQuery.customer" placeholder="请输入 来往客户"
-                               style="float: left;width: 100%"
+                               style="float: left;width: 300px"
                                :fetch-suggestions="querySearch"
                                :trigger-on-focus="false"
                                @select="handleSelect"/>
@@ -46,7 +46,7 @@
               <span> &nbsp;~&nbsp;</span>
               <el-input style="width: 110px" v-model="listQuery.contractMoneyEnd" placeholder="合同金额"></el-input>
             </el-form-item>
-            <el-form-item label="开票状态：">
+            <el-form-item label="开票状态：" style="float: right;margin-right: 227px;">
               <el-select v-model="listQuery.ticketStatus" placeholder="全部" clearable>
                 <el-option
                   v-for="item in ticketStatus"
@@ -111,11 +111,9 @@
             querySearch(queryString, callback) {
                 let res = [];
                 this.$store.dispatch("ContractNameAutoCompletion", this.listQuery.customer).then(data => {
-
                     data.data.forEach((item) => {
-                        res.push({value: item})
+                        res.push({value: item.customer, key: item.cid})
                     });
-
                     callback(res);
                 });
             },

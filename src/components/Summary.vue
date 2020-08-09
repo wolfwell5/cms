@@ -44,17 +44,35 @@
             width="120"
             label="合同金额">
           </el-table-column>
+
           <el-table-column
+            v-if="ifShowColumn()"
             prop="receiveMoney"
             sortable
             width="120"
             label="收款金额">
           </el-table-column>
           <el-table-column
+            v-else
+            prop="payMoney"
+            sortable
+            width="120"
+            label="付款金额">
+          </el-table-column>
+
+          <el-table-column
+            v-if="ifShowColumn()"
             prop="receiveDate"
             sortable
             label="收款日期">
           </el-table-column>
+          <el-table-column
+            v-else
+            prop="payDate"
+            sortable
+            label="付款日期">
+          </el-table-column>
+
           <el-table-column
             prop="insuranceMoney"
             sortable
@@ -67,23 +85,50 @@
             width="130"
             label="质保金到期日">
           </el-table-column>
+
           <el-table-column
+            v-if="ifShowColumn()"
             prop="ticketStatus"
-            :formatter="ticketTransfer"
+            :formatter="ticketStatusTransfer"
             sortable
             width="110"
             label="开票情况">
           </el-table-column>
           <el-table-column
+            v-else
+            prop="ticketBackStatus"
+            :formatter="ticketStatusTransfer"
+            sortable
+            width="110"
+            label="回票情况">
+          </el-table-column>
+
+          <el-table-column
+            v-if="ifShowColumn()"
             prop="ticketCompany"
             sortable
             label="开票单位">
           </el-table-column>
           <el-table-column
+            v-else
+            prop="ticketBackCompany"
+            sortable
+            label="回票单位">
+          </el-table-column>
+
+          <el-table-column
+            v-if="ifShowColumn()"
             prop="ticketGenerateDate"
             sortable
             label="开票日期">
           </el-table-column>
+          <el-table-column
+            v-else
+            prop="ticketBackDate"
+            sortable
+            label="回票日期">
+          </el-table-column>
+
           <el-table-column
             prop="comment"
             label="备注">
@@ -196,6 +241,9 @@
             // }
         },
         mounted() {
+            const type = this.$route.query.type;
+            this.$store.commit('changeType', type);
+            this.searchParam.type = this.$store.state.contract.type;
             this.initTableData();
         },
         methods: {
@@ -213,9 +261,6 @@
                 return '';
             },
             initTableData() {
-                const type = this.$route.query.type;
-                this.searchParam.type = type;
-
                 this.tableData = [];
                 try {
                     this.listLoading = true;
@@ -239,7 +284,11 @@
             },
             handleEdit(index, row) {
                 console.log('row', JSON.parse(JSON.stringify(row)));
-                this.$router.push({path: '/inputIncome', query: {cid: row.cid}});
+                if (!row.ticketBackStatus && row.ticketStatus) {
+                    this.$router.push({path: '/inputIncome', query: {cid: row.cid}});
+                } else {
+                    this.$router.push({path: '/inputExpend', query: {cid: row.cid}});
+                }
                 // this.$router.push({name: 'ContractFormInput', params: {cid: row.cid}});
             },
             handleDelete(index, row) {
@@ -273,15 +322,19 @@
                     });
                 });
             },
-            ticketTransfer(val) {
-                const va = val.ticketStatus;
+            ticketStatusTransfer(val) {
+                const va = val.ticketStatus || val.ticketBackStatus;
+                let middleWord = val.ticketStatus ? '开' : '回';
                 if (va === '0') {
-                    return '未开票'
+                    return '未' + middleWord + '票'
                 } else if (va === '1') {
-                    return '已开票';
+                    return '已' + middleWord + '票';
                 } else {
                     return '未知';
                 }
+            },
+            ifShowColumn() {
+                return this.$route.query.type === 'incomeSearch';
             },
         },
 

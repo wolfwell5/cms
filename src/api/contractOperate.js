@@ -32,7 +32,7 @@ function searchContractTableData(param) {
 
 function deleteContractTableData(param) {
 
-  console.log('param', JSON.parse(JSON.stringify(param)));
+  // console.log('param', JSON.parse(JSON.stringify(param)));
 
   const axiosPromise = request({
     url: '/contractManagement/deleteContractTableData/',

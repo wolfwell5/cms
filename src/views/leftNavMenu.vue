@@ -46,12 +46,11 @@
     export default {
         name: "leftNavMenu",
         data() {
-            return {
-
-            }
+            return {}
         },
         methods: {
             openPage(type, url) {
+                this.$store.commit('changeType', type);
                 this.$router.push({path: "/" + url, query: {type}});
             },
         },

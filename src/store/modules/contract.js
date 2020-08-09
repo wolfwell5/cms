@@ -7,6 +7,14 @@ import {
 } from '@/api/contractOperate'
 
 const contract = {
+  state: {
+    type: '',
+  },
+  mutations: {
+    changeType(state, payload) {
+        state.type = payload;
+    }
+  },
   actions: {
     SaveContract({commit}, contractInfo) {
       // const loginName = contractInfo.username.trim()
@@ -54,7 +62,7 @@ const contract = {
     },
 
     ContractFormDataInit({commit}, cid) {
-      console.log('1000', JSON.parse(JSON.stringify(cid)));
+      // console.log('1000', JSON.parse(JSON.stringify(cid)));
       return new Promise((resolve, reject) => {
         getContractById(cid).then(response => {
           resolve(response)
@@ -64,7 +72,7 @@ const contract = {
       })
     },
 
-  }
+  },
 }
 
 export default contract

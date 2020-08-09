@@ -102,7 +102,6 @@
                                 }
                             })
                             .catch((e) => {
-                                console.log('exception', e)
                                 this.loading = false;
                             });
                     } else {

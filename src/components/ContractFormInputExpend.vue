@@ -7,7 +7,7 @@
                          style="float: left;width: 100%"
                          :fetch-suggestions="querySearchPid"
                          :trigger-on-focus="false"
-                         @select="handleSelect"/>
+                         @select="handlePidSelect"/>
       </el-form-item>
       <el-form-item label="来往客户" prop="customer">
         <el-autocomplete class="" v-model="ruleForm.customer" placeholder="请输入 来往客户"
@@ -51,7 +51,7 @@
       </el-form-item>
 
       <el-form-item label="回票情况" prop="ticketBackStatus">
-        <el-select v-model="ruleForm.ticketBackStatus" placeholder="请选择回票状态" clearable>
+        <el-select v-model="ruleForm.ticketBackStatus === '0' ? '未回票' :'已回票'" placeholder="请选择回票状态" clearable>
           <el-option
             v-for="item in ticketBackStatus"
             :key="item.value"
@@ -242,9 +242,12 @@
                 });
             },
             handleSelect(item) {
+                // this.ruleForm.pid = `${item.key}`;
+            },
+            handlePidSelect(item) {
                 this.ruleForm.pid = `${item.key}`;
-                console.log('this.ruleForm.pid', JSON.parse(JSON.stringify(this.ruleForm.pid)));
-                console.log('val', JSON.parse(JSON.stringify(item)));
+                // console.log('this.ruleForm.pid', JSON.parse(JSON.stringify(this.ruleForm.pid)));
+                // console.log('val', JSON.parse(JSON.stringify(item)));
             },
             showMessage(message, type) {
                 this.$message({
@@ -254,7 +257,7 @@
             },
             initFormData(query) {
                 let cid = query.cid;
-                // cid = 103;
+
                 if (cid) {
                     this.$store.dispatch("ContractFormDataInit", cid).then(res => {
                         if (res.data) {

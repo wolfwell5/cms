@@ -11,7 +11,7 @@
  Target Server Version : 50546
  File Encoding         : 65001
 
- Date: 05/08/2020 21:00:36
+ Date: 09/08/2020 11:01:06
 */
 
 SET NAMES utf8mb4;
@@ -35,13 +35,15 @@ CREATE TABLE `contract`  (
   `ticketGenerateDate` datetime NULL DEFAULT NULL COMMENT '开票日期',
   `comment` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   `createDate` datetime NULL DEFAULT NULL,
+  `updateDate` datetime NULL DEFAULT NULL,
   `pid` bigint(20) NULL DEFAULT NULL COMMENT '父合同id',
   `payMoney` int(30) NULL DEFAULT NULL COMMENT '付款金额',
   `payDate` datetime NULL DEFAULT NULL COMMENT '付款日期',
   `ticketBackStatus` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '回票情况',
   `ticketBackCompany` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '回票单位',
   `ticketBackDate` datetime NULL DEFAULT NULL COMMENT '回票日期',
+  
   PRIMARY KEY (`cid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 97 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 115 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 SET FOREIGN_KEY_CHECKS = 1;

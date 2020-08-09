@@ -48,7 +48,7 @@
       </el-form-item>
 
       <el-form-item label="开票情况" prop="ticketStatus">
-        <el-select v-model="ruleForm.ticketStatus" placeholder="请选择开票状态" clearable>
+        <el-select v-model="ruleForm.ticketStatus === '0' ? '未开票' :'已开票'" placeholder="请选择开票状态" clearable >
           <el-option
             v-for="item in ticketStatus"
             :key="item.value"
@@ -224,7 +224,7 @@
                 this.$store.dispatch("ContractNameAutoCompletion", this.ruleForm.customer).then(data => {
 
                     data.data.forEach((item) => {
-                        res.push({value: item})
+                        res.push({value: item.customer, key: item.cid})
                     });
                     // console.log('res', JSON.parse(JSON.stringify(res)));
                     callback(res);
@@ -244,9 +244,21 @@
                 if (cid) {
                     this.$store.dispatch("ContractFormDataInit", cid).then(res => {
                         this.ruleForm = res.data;
+                        // console.log('res data', JSON.parse(JSON.stringify(res.data)));
                     });
                 }
-            }
+            },
+            ticketStatusTransfer(val) {
+                const va = val.ticketStatus || val.ticketBackStatus;
+                let middleWord = val.ticketStatus ? '开' : '回';
+                if (va === '0') {
+                    return '未' + middleWord + '票'
+                } else if (va === '1') {
+                    return '已' + middleWord + '票';
+                } else {
+                    return '未知';
+                }
+            },
         }
     }
 </script>
