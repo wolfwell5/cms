@@ -8,10 +8,16 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './icons'
 import store from './store' //引入 Vuex 状态管理
 import qs from 'qs'
+import axios from 'axios'
 
 Vue.prototype.$qs = qs;
 Vue.use(elmentui);
 Vue.config.productionTip = false
+// Vue.prototype.$ajax = axios
+Vue.prototype.$axios = axios
+// Vue.use(axios)
+// axios.defaults.baseURL='8088'
+
 
 /* eslint-disable no-new */
 // new Vue({

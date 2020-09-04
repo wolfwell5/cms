@@ -2,7 +2,7 @@
   <div>
 
     <div class="searchCondition">
-      <contract-search-condition @loading-data="loadingData"/>
+      <contract-search-condition @loading-data="loadingData" @download-excel="downLoadExcel"/>
     </div>
 
     <div>
@@ -241,9 +241,6 @@
             // }
         },
         mounted() {
-            const type = this.$route.query.type;
-            this.$store.commit('changeType', type);
-            this.searchParam.type = this.$store.state.contract.type;
             this.initTableData();
         },
         methods: {
@@ -260,7 +257,14 @@
                 }
                 return '';
             },
+            initSearchParam() {
+                const type = this.$route.query.type || '';
+                this.$store.commit('changeType', type);
+                this.searchParam.type = this.$store.state.contract.type || '';
+            },
             initTableData() {
+                this.initSearchParam();
+
                 this.tableData = [];
                 try {
                     this.listLoading = true;
@@ -282,8 +286,18 @@
                     this.listLoading = false
                 }
             },
+            downLoadExcel(param) {
+                this.searchParam = param;
+                this.initSearchParam();
+
+                try {
+                    this.listLoading = true;
+                    this.$store.dispatch("DownloadExcelDataByCondition", this.searchParam);
+                } finally {
+                    this.listLoading = false
+                }
+            },
             handleEdit(index, row) {
-                console.log('row', JSON.parse(JSON.stringify(row)));
                 if (!row.ticketBackStatus && row.ticketStatus) {
                     this.$router.push({path: '/inputIncome', query: {cid: row.cid}});
                 } else {
@@ -334,7 +348,9 @@
                 }
             },
             ifShowColumn() {
-                return this.$route.query.type === 'incomeSearch';
+                var type = this.$route.query.type;
+                if (!type) return true;
+                return type === 'incomeSearch';
             },
         },
 

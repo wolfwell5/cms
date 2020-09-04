@@ -50,6 +50,14 @@
         },
         methods: {
             openPage(type, url) {
+                if (type === 'costSummary') {
+                    this.$message({
+                        type: 'info',
+                        message: '敬请期待 ...'
+                    });
+                    return;
+                }
+
                 this.$store.commit('changeType', type);
                 this.$router.push({path: "/" + url, query: {type}});
             },

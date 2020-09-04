@@ -1,4 +1,3 @@
-
 function isNum(rule, value, callback) {
 
   const age = /^(([1-9]{1}\d*)|(0{1}))(\.\d{1,2})?$/;
@@ -9,6 +8,11 @@ function isNum(rule, value, callback) {
   }
 }
 
+function formatDate(time, fmt) {
+  return time.format(fmt);
+}
+
 export {
   isNum,
+  formatDate,
 }

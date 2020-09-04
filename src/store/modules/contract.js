@@ -3,7 +3,8 @@ import {
   contractNameAutoCompletion,
   searchContractTableData,
   deleteContractTableData,
-  getContractById
+  getContractById,
+  downloadExcelDataByCondition,
 } from '@/api/contractOperate'
 
 const contract = {
@@ -17,8 +18,6 @@ const contract = {
   },
   actions: {
     SaveContract({commit}, contractInfo) {
-      // const loginName = contractInfo.username.trim()
-      // console.log(1000, contractInfo)
 
       return new Promise((resolve, reject) => {
         saveContract(contractInfo, {emulateJSON: true}).then(response => {
@@ -31,7 +30,6 @@ const contract = {
     },
 
     ContractNameAutoCompletion({commit}, contractName) {
-      // console.log('1000', JSON.parse(JSON.stringify(contractName)));
       return new Promise((resolve, reject) => {
         contractNameAutoCompletion(contractName).then(response => {
           resolve(response)
@@ -62,13 +60,18 @@ const contract = {
     },
 
     ContractFormDataInit({commit}, cid) {
-      // console.log('1000', JSON.parse(JSON.stringify(cid)));
       return new Promise((resolve, reject) => {
         getContractById(cid).then(response => {
           resolve(response)
         }).catch(error => {
           reject(error)
         })
+      })
+    },
+
+    DownloadExcelDataByCondition({commit}, param) {
+      return new Promise((resolve, reject) => {
+        downloadExcelDataByCondition(param);
       })
     },
 

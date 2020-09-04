@@ -12,7 +12,16 @@ vue中引入.svg图标	https://www.jianshu.com/p/acc348ae77a1
 cnpm i svg-sprite-loader --save
 
 cnpm install qs --save-dev
+cnpm i moment --save
 
 
 
+netstat -aon|findstr "端口号"
+netstat -aon|findstr "8088"
+
+tasklist|findstr "查询出的 listening"
+tasklist|findstr "4704"
+
+taskkill /f /t /im 查询出占用程序名称
+taskkill /f /t /im javaw.exe
 

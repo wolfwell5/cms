@@ -29,7 +29,7 @@
 
 <style scoped>
   .el-header, .el-footer {
-    background-color: #409C94;
+    background-color: whitesmoke;
     /*background-color: #D3DCE6;*/
     color: #333;
     text-align: center;

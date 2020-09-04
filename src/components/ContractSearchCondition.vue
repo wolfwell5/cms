@@ -25,6 +25,9 @@
               size="small">
               重置
             </el-button>
+            <el-button @click="downLoadExcel()" size="small" type="warning" round>
+              <i class="el-icon-download">Excel导出</i>
+            </el-button>
           </div>
         </div>
 
@@ -46,6 +49,7 @@
               <span> &nbsp;~&nbsp;</span>
               <el-input style="width: 110px" v-model="listQuery.contractMoneyEnd" placeholder="合同金额"></el-input>
             </el-form-item>
+
             <el-form-item label="开票状态：" style="float: right;margin-right: 227px;">
               <el-select v-model="listQuery.ticketStatus" placeholder="全部" clearable>
                 <el-option
@@ -68,8 +72,8 @@
 <script>
 
     const defaultListQuery = {
-        pageNum: 1,
-        pageSize: 20,
+        // pageNum: 1,
+        // pageSize: 20,
         customer: null,
         contractName: null,
         ticketStatus: null,
@@ -125,13 +129,10 @@
                 this.listQuery = Object.assign({}, defaultListQuery);
             },
             getList() {
-                // this.listLoading = true;
                 this.$emit('loading-data', this.listQuery);
-                // fetchList(this.listQuery).then(response => {
-                //     this.listLoading = false;
-                //     this.list = response.data.list;
-                //     this.total = response.data.total;
-                // });
+            },
+            downLoadExcel() {
+                this.$emit('download-excel', this.listQuery);
             },
         },
     }

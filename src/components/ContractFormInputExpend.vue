@@ -2,7 +2,7 @@
   <div>
 
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
-      <el-form-item label="包出项目来源" prop="customerSource">
+      <el-form-item label="包出项目来源(选择客户)" prop="customerSource">
         <el-autocomplete class="" v-model="ruleForm.customerSource" placeholder="请输入 包出项目来源"
                          style="float: left;width: 100%"
                          :fetch-suggestions="querySearchPid"
