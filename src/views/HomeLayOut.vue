@@ -5,7 +5,14 @@
       <left-nav-menu class="full-height"/>
 
       <el-container>
-        <el-header><span>项目合同 管理系统</span></el-header>
+        <el-header class="item">
+          <span style="flex-grow: 0.1;">
+            <full-screen-button/>
+          </span>
+          <span style="flex-grow: 7;">项目合同 管理系统</span>
+          <span style="flex-grow: 1;"></span>
+
+        </el-header>
 
         <el-main>
           <router-view/>
@@ -20,10 +27,11 @@
 <script>
     import ContractFormInput from "../components/ContractFormInput";
     import LeftNavMenu from "./leftNavMenu";
+    import FullScreenButton from "@/components/FullScreenButton";
 
     export default {
         name: "HomeLayOut",
-        components: {LeftNavMenu, ContractFormInput},
+        components: {FullScreenButton, LeftNavMenu, ContractFormInput},
     }
 </script>
 
@@ -37,7 +45,7 @@
     height: 100%;
   }
 
-  .el-header >span {
+  .el-header > span {
     font-size: 28px;
     font-weight: bolder;
     font-family: 楷体;
@@ -65,5 +73,11 @@
     height: 105.4vh;
     border: 1px solid #eee
   }
+
+  .item {
+    /*flex-grow: 0;*/
+    display: flex;
+  }
+
 </style>
 
