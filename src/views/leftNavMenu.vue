@@ -89,6 +89,7 @@
 
   .el-menu-item {
     /*background-color: #c4e1ff;*/
-    background-color: #d0d0d0;
+    /*background-color: #d0d0d0;*/
+    background-color: #f0f0f0;
   }
 </style>
