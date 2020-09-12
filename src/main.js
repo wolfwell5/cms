@@ -9,6 +9,7 @@ import './icons'
 import store from './store' //引入 Vuex 状态管理
 import qs from 'qs'
 import axios from 'axios'
+import echarts from 'echarts'
 
 Vue.prototype.$qs = qs;
 Vue.use(elmentui);
@@ -16,8 +17,8 @@ Vue.config.productionTip = false
 // Vue.prototype.$ajax = axios
 Vue.prototype.$axios = axios
 // Vue.use(axios)
-// axios.defaults.baseURL='8088'
-
+axios.defaults.baseURL='http://localhost:8088'
+Vue.prototype.$echarts = echarts
 
 /* eslint-disable no-new */
 // new Vue({

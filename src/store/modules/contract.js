@@ -2,6 +2,7 @@ import {
   saveContract,
   contractNameAutoCompletion,
   searchContractTableData,
+  getCostSummary,
   deleteContractTableData,
   getContractById,
   downloadExcelDataByCondition,
@@ -13,7 +14,7 @@ const contract = {
   },
   mutations: {
     changeType(state, payload) {
-        state.type = payload;
+      state.type = payload;
     }
   },
   actions: {
@@ -42,6 +43,16 @@ const contract = {
     SearchContractTableData({commit}, param) {
       return new Promise((resolve, reject) => {
         searchContractTableData(param).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+
+    GetCostSummary({commit}, param) {
+      return new Promise((resolve, reject) => {
+        getCostSummary(param).then(response => {
           resolve(response)
         }).catch(error => {
           reject(error)

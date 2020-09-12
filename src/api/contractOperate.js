@@ -36,6 +36,16 @@ function searchContractTableData(param) {
   return axiosPromise;
 }
 
+function getCostSummary(param) {
+  const axiosPromise = request({
+    url: '/contractManagement/getCostSummary/',
+    method: 'get',
+    params: param,
+  });
+
+  return axiosPromise;
+}
+
 function deleteContractTableData(param) {
 
   // console.log('param', JSON.parse(JSON.stringify(param)));
@@ -89,6 +99,7 @@ export {
   saveContract,
   contractNameAutoCompletion,
   searchContractTableData,
+  getCostSummary,
   deleteContractTableData,
   getContractById,
   downloadExcelDataByCondition,

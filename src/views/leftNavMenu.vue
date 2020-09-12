@@ -31,7 +31,7 @@
             </el-menu-item-group>
           </el-submenu>
 
-          <el-menu-item index="4" @click="openPage('costSummary')"><i class="el-icon-s-marketing"/>成本汇总表</el-menu-item>
+          <el-menu-item index="/costSummary/" @click="openPage('', 'costSummary')"><i class="el-icon-s-marketing"/>盈利比例汇总</el-menu-item>
 
 
         </el-menu>
@@ -59,14 +59,6 @@
         },
         methods: {
             openPage(type, url) {
-                if (type === 'costSummary') {
-                    this.$message({
-                        type: 'info',
-                        message: '敬请期待 ...'
-                    });
-                    return;
-                }
-
                 this.$store.commit('changeType', type);
                 this.$router.push({path: "/" + url, query: {type}});
             },

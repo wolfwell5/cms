@@ -7,6 +7,7 @@ import Success from '@/views/success'
 import HomeLayOut from '@/views/HomeLayOut'
 import ContractFormInput from "@/components/ContractFormInput";
 import ContractFormInputExpend from "@/components/ContractFormInputExpend";
+import costSummary from "@/components/costSummary";
 
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
 const originalPush = Router.prototype.push
@@ -40,6 +41,11 @@ const router = new Router({
           path: '/inputExpend/',
           name: 'ContractFormInputExpend',
           component: ContractFormInputExpend
+        },
+        {
+          path: '/costSummary/',
+          name: 'costSummary',
+          component: costSummary
         },
       ],
       redirect: "/summary",  //这段代码

@@ -1,8 +1,8 @@
 <template>
   <div @click="fullScreenControl" style="font-size: 20px;font-family:楷体;">
-    <!--    <el-button @click="alert" type="primary">-->
-    <i class="el-icon-full-screen"/> {{ fullScreenText }}
-    <!--    </el-button>-->
+    <el-button type="primary" size="mini">
+      <i class="el-icon-full-screen"/> {{ fullScreenText }}
+    </el-button>
   </div>
 </template>
 
